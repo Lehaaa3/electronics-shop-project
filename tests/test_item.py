@@ -1,1 +1,25 @@
 """Здесь надо написать тесты с использованием pytest для модуля item."""
+
+import pytest
+from src.item import Item
+
+
+@pytest.fixture
+def item1():
+    item1 = Item("apple", 10.0, 5)
+    return item1
+
+
+def test_item_calculate_total_price():
+    """Создаем класс продукта с его стоимостью и количеством, с помощью функции получаем общую стоимость"""
+    item1 = Item("apple", 10.0, 5)
+    assert item1.calculate_total_price() == 50
+
+
+def test_apply_discount():
+    """Применяем скидку к стоимости товара, получаем новое значение цены"""
+    item2 = Item("orange", 15.0, 10)
+    assert item2.price == 15.0
+    Item.pay_rate = 0.5
+    item2.apply_discount()
+    assert item2.price == 7.5
