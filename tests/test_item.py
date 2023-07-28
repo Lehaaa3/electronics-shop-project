@@ -10,6 +10,12 @@ def item1():
     return item1
 
 
+def test_instantiate_from_csv():
+    """Создаем экземпляры класса Item из csv файла. Проверяем количество созданных экземпляров"""
+    Item.instantiate_from_csv()
+    assert len(Item.all) == 5
+
+
 def test_item_calculate_total_price():
     """Создаем класс продукта с его стоимостью и количеством, с помощью функции получаем общую стоимость"""
     item1 = Item("apple", 10.0, 5)
@@ -23,3 +29,12 @@ def test_apply_discount():
     Item.pay_rate = 0.5
     item2.apply_discount()
     assert item2.price == 7.5
+
+
+def test_string_to_number():
+    """Проверяем правильность перевода str в int"""
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
+
+
