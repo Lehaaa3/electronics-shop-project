@@ -1,4 +1,6 @@
 import csv
+from pathlib import Path
+
 
 class Item:
     """
@@ -22,7 +24,9 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        with open(r'C:\Users\Lenovo\projects 2023\electronics-shop-project\src\items.csv') as f:
+        data_folder = Path("C:/Users/Lenovo/projects 2023/electronics-shop-project/src/")
+        path = data_folder / "items.csv"
+        with open(path) as f:
             info = csv.DictReader(f)
             for row in info:
                 Item(row['name'], row['price'], row['quantity'])
@@ -57,5 +61,3 @@ class Item:
         Применяет установленную скидку для конкретного товара.
         """
         self.price = self.price * self.pay_rate
-
-

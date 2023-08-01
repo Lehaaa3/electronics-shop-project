@@ -9,7 +9,11 @@ packages = [{include = "electronics_shop_project"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 pytest = "^7.2.2"
+pathlib = "^1.0.1"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest-cov = "^4.1.0"
 
 [build-system]
 requires = ["poetry-core"]
