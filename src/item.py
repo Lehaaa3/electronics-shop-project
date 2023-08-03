@@ -1,5 +1,5 @@
 import csv
-from pathlib import Path
+import os
 
 
 class Item:
@@ -24,8 +24,7 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls):
-        data_folder = Path("C:/Users/Lenovo/projects 2023/electronics-shop-project/src/")
-        path = data_folder / "items.csv"
+        path = os.path.dirname(os.path.abspath(__file__)) + '/items.csv'
         with open(path) as f:
             info = csv.DictReader(f)
             for row in info:
