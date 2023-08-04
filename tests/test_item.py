@@ -38,3 +38,17 @@ def test_string_to_number():
     assert Item.string_to_number('5.5') == 5
 
 
+def test_item_repr():
+    """Проверяем работу магического метода repr класса Item"""
+    item1 = Item("Смартфон", 10000, 20)
+    assert repr(item1) == "Item('Смартфон', 10000, 20)"
+
+
+def test_item_str():
+    """Проверяем работу магического метода str класса Item"""
+    item1 = Item("Смартфон", 10000, 20)
+    assert str(item1) == 'Смартфон'
+
+
+
+

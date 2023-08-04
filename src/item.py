@@ -22,6 +22,12 @@ class Item:
         self.quantity = quantity
         self.all.append(self)
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}('{self.__name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return self.__name
+
     @classmethod
     def instantiate_from_csv(cls):
         path = os.path.join(os.path.dirname(__file__), 'items.csv')
@@ -32,7 +38,7 @@ class Item:
 
     @property
     def name(self):
-        pass
+        return self.__name
 
     @name.setter
     def name(self, new_name):
