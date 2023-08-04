@@ -17,29 +17,29 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
         self.all.append(self)
 
     @classmethod
     def instantiate_from_csv(cls):
-        path = os.path.dirname(os.path.abspath(__file__)) + '/items.csv'
+        path = os.path.join(os.path.dirname(__file__), 'items.csv')
         with open(path) as f:
             info = csv.DictReader(f)
             for row in info:
                 Item(row['name'], row['price'], row['quantity'])
 
     @property
-    def change_name(self):
+    def name(self):
         pass
 
-    @change_name.setter
-    def change_name(self, new_name):
+    @name.setter
+    def name(self, new_name):
         if len(new_name) > 10:
-            self.name = new_name[:9]
+            raise Exception('Длина наименования товара превышает 10 символов.')
         else:
-            self.name = new_name
+            self.__name = new_name
 
     @staticmethod
     def string_to_number(string_number):
