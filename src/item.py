@@ -28,6 +28,11 @@ class Item:
     def __str__(self):
         return self.__name
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        Exception("Недопустимый класс для сложения")
+
     @classmethod
     def instantiate_from_csv(cls):
         path = os.path.join(os.path.dirname(__file__), 'items.csv')
