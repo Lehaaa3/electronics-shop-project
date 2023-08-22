@@ -3,7 +3,7 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
-
+from src.item import InstantiateCSVError
 
 @pytest.fixture
 def item1():
@@ -15,6 +15,12 @@ def test_instantiate_from_csv():
     """Создаем экземпляры класса Item из csv файла. Проверяем количество созданных экземпляров"""
     Item.instantiate_from_csv()
     assert len(Item.all) == 5
+    #перед следующим тестом изменяем название файла items.csv
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv()
+    #перед следующим тестом удаляем любое из значений в колонках файла items.csv
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv()
 
 
 def test_item_calculate_total_price():
